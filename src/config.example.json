@@ -1,0 +1,50 @@
+{
+  "_comment": "真实环境配置示例。把 provider 改为 openai / gemini,并设置环境变量 OPENAI_API_KEY / GEMINI_API_KEY。模型 ID 会高频弃用,请以官方文档为准并定期更新(本文件截至 2026-05 有效)。",
+  "models": {
+    "gpt": {
+      "provider": "openai",
+      "model_id": "gpt-5.5",
+      "effort_map": { "low": "low", "medium": "medium", "high": "high" },
+      "fallback": ["gpt_compat"],
+      "price_in_per_mtok": 1.25,
+      "price_out_per_mtok": 10.0
+    },
+    "gemini": {
+      "provider": "gemini",
+      "model_id": "gemini-3.1-pro-preview",
+      "effort_map": { "low": "low", "medium": "medium", "high": "high" },
+      "fallback": [],
+      "price_in_per_mtok": 2.0,
+      "price_out_per_mtok": 12.0
+    },
+    "gpt_compat": {
+      "provider": "openai",
+      "model_id": "gpt-5.4",
+      "price_in_per_mtok": 1.25,
+      "price_out_per_mtok": 10.0
+    },
+    "judge": {
+      "provider": "openai",
+      "model_id": "anthropic/claude-opus-4.6",
+      "base_url": "https://openrouter.ai/api/v1",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "effort_map": { "low": "low", "medium": "medium", "high": "high" },
+      "price_in_per_mtok": 5.0,
+      "price_out_per_mtok": 25.0,
+      "_comment": "裁判刻意选用与两位作答者不同的第三方家族(此处经 OpenRouter 调 Claude),以消除自偏好。也可换成 LiteLLM 网关。"
+    }
+  },
+  "panel": ["gpt", "gemini"],
+  "judge": "judge",
+  "samples": 1,
+  "timeout_s": 90.0,
+  "max_retries": 2,
+  "max_usd": 0.5,
+  "temperature_answer": 0.7,
+  "temperature_judge": 0.0,
+  "effort_answer": "medium",
+  "effort_judge": "high",
+  "verify_citations": true,
+  "check_citation_liveness": false,
+  "seed": 7
+}

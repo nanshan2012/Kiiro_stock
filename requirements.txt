@@ -1,0 +1,12 @@
+# 核心流水线(src/cross_validate.py)仅依赖标准库,MockProvider 可零依赖离线运行。
+# 接入真实模型时按需安装:
+
+# OpenAI(Responses API,reasoning.effort)
+openai>=1.0
+
+# Gemini 原生 SDK(thinking_config / thinking_level)
+google-genai>=0.3
+
+# 开发与测试
+pytest>=8.0
+ruff>=0.6
